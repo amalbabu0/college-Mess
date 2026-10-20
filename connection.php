@@ -17,9 +17,8 @@ $pass = $parts['pass'];
 // libpq doesn't send SNI (common on serverless Linux builds), the endpoint
 // id must be passed explicitly instead. https://neon.com/sni
 $endpointId = explode('.', $host)[0];
-$options = rawurlencode("endpoint=$endpointId");
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require;options=$options";
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require;options='endpoint=$endpointId'";
 
 try {
     $con = new PDO($dsn, $user, $pass, [
