@@ -13,7 +13,13 @@ $dbname = ltrim($parts['path'], '/');
 $user = $parts['user'];
 $pass = $parts['pass'];
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
+// Neon's proxy routes connections by SNI hostname; if the PHP environment's
+// libpq doesn't send SNI (common on serverless Linux builds), the endpoint
+// id must be passed explicitly instead. https://neon.com/sni
+$endpointId = explode('.', $host)[0];
+$options = rawurlencode("endpoint=$endpointId");
+
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require;options=$options";
 
 try {
     $con = new PDO($dsn, $user, $pass, [
