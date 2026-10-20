@@ -18,6 +18,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["user_type"] != "Student") {
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <title>College Mess</title>
+    <link href="/favicon.png" rel="icon" type="image/png">
 <!--
     
 TemplateMo 558 Klassy Cafe
