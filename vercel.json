@@ -8,6 +8,7 @@
     { "src": "student/assets/**", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/favicon\\.ico", "dest": "/favicon.png" },
     { "src": "/(.*\\.(css|js|eot|gif|jpg|jpeg|png|svg|ttf|woff|woff2|otf|ico))$", "dest": "/$1" },
     { "src": "/(.*)", "dest": "/server.php" }
   ]
